@@ -1,0 +1,37 @@
+---
+import { services } from '../data/services';
+---
+
+<section id="diensten" class="py-16 md:py-24 border-b-2 border-cyan/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 md:mb-16 reveal">
+      <span class="font-mono text-cyan text-sm uppercase tracking-wider">Diensten</span>
+      <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mt-2">
+        Wat ik <span class="text-cyan">bouw</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-cyan/20 border-2 border-cyan/20">
+      {services.sort((a, b) => a.order - b.order).map((service, index) => (
+        <a 
+          href={`/diensten/${service.slug}/`}
+          class="group bg-oxford p-6 md:p-8 hover:bg-oxford-light transition-colors duration-300 reveal"
+          style={`transition-delay: ${index * 50}ms`}
+        >
+          <div class="text-3xl mb-4 group-hover:scale-110 transition-transform duration-300">
+            {service.icon}
+          </div>
+          <h3 class="font-heading text-xl md:text-2xl font-bold mb-2 group-hover:text-cyan transition-colors duration-300">
+            {service.title}
+          </h3>
+          <p class="font-mono text-sm text-muted group-hover:text-offwhite transition-colors duration-300">
+            {service.shortDesc}
+          </p>
+          <div class="mt-4 font-mono text-cyan text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Bekijk dienst →
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

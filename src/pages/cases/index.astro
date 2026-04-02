@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const cases = await getCollection('cases');
+---
+
+<Layout title="Cases | Iwan Stepanova - Resultaten die Spreken">
+  <section class="pt-24 md:pt-32 pb-16 border-b-2 border-cyan/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="font-mono text-cyan text-sm uppercase tracking-wider">Cases</span>
+      <h1 class="font-heading text-4xl md:text-6xl font-bold mt-2 mb-12">
+        Resultaten die <span class="text-cyan">spreken</span>
+      </h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {cases.map((caseItem) => (
+          <a 
+            href={`/cases/${caseItem.id}/`}
+            class="group border-2 border-cyan/20 hover:border-cyan/50 transition-colors duration-300 block reveal"
+          >
+            <div class="p-6 md:p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-xs text-muted uppercase">{caseItem.data.industry}</span>
+                <span class="font-mono text-xs text-cyan">{caseItem.data.client}</span>
+              </div>
+              <h2 class="font-heading text-xl md:text-2xl font-bold mb-4 group-hover:text-cyan transition-colors">
+                {caseItem.data.title}
+              </h2>
+              <ul class="space-y-2">
+                {caseItem.data.results.map((result) => (
+                  <li class="font-mono text-sm text-cyan">✓ {result}</li>
+                ))}
+              </ul>
+              <div class="mt-6 font-mono text-sm text-muted group-hover:text-offwhite transition-colors">
+                Lees de volledige case →
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

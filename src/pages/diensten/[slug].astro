@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const diensten = await getCollection('diensten');
+  return diensten.map((dienst) => ({
+    params: { slug: dienst.id },
+    props: { dienst },
+  }));
+}
+
+const { dienst } = Astro.props;
+const { Content } = await render(dienst);
+---
+
+<Layout title={`${dienst.data.title} | Iwan Stepanova`}>
+  <!-- Hero -->
+  <section class="pt-24 md:pt-32 pb-16 border-b-2 border-cyan/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/diensten/" class="font-mono text-cyan text-sm hover:underline mb-4 inline-block">
+        ← Terug naar diensten
+      </a>
+      <div class="text-4xl mb-4">{dienst.data.icon}</div>
+      <h1 class="font-heading text-4xl md:text-6xl font-bold">
+        {dienst.data.title}
+      </h1>
+      <p class="font-mono text-muted text-lg mt-4">{dienst.data.shortDesc}</p>
+    </div>
+  </section>
+
+  <!-- Wat houdt het in? -->
+  <section class="py-16 border-b-2 border-cyan/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-6">
+        Wat houdt het <span class="text-cyan">in</span>?
+      </h2>
+      <div class="prose prose-lg prose-invert max-w-none">
+        <p class="text-muted leading-relaxed">{dienst.data.watHoudtHetIn}</p>
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <!-- Aanpak -->
+  <section class="py-16 border-b-2 border-cyan/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-8">
+        Onze <span class="text-cyan">Aanpak</span>
+      </h2>
+      <div class="border-2 border-cyan/20">
+        {dienst.data.aanpak.map((stap, index) => (
+          <div class={`flex items-start gap-4 p-6 ${index < dienst.data.aanpak.length - 1 ? 'border-b border-cyan/20' : ''}`}>
+            <span class="font-heading text-cyan text-xl font-bold min-w-[2rem]">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <p class="font-body text-lg">{stap}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-6">
+        Klaar om te <span class="text-cyan">starten</span>?
+      </h2>
+      <a 
+        href="/#contact" 
+        class="inline-block bg-cyan text-oxford font-heading font-bold text-lg px-8 py-4 hard-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-300"
+      >
+        Neem Contact Op →
+      </a>
+    </div>
+  </section>
+</Layout>
