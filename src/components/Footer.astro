@@ -1,5 +1,6 @@
 ---
 const ctaText = "Laten we praten over jouw groei";
+const base = import.meta.env.BASE_URL;
 ---
 
 <footer class="border-t-2 border-cyan/20">
@@ -48,9 +49,9 @@ const ctaText = "Laten we praten over jouw groei";
   <!-- Footer Bottom -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-      <div class="font-heading text-4xl font-bold tracking-tighter">
+      <a href={base} class="font-heading text-4xl font-bold tracking-tighter hover:text-cyan transition-colors">
         IS<span class="text-cyan">.</span>
-      </div>
+      </a>
       <p class="font-mono text-sm text-muted">
         © {new Date().getFullYear()} Iwan Stepanova. Alle rechten voorbehouden.
       </p>

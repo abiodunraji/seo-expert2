@@ -15,6 +15,7 @@ const { Content } = await render(caseItem);
 
 const allCases = await getCollection('cases');
 const relatedCases = allCases.filter(c => c.id !== caseItem.id).slice(0, 2);
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={`${caseItem.data.title} | Iwan Stepanova`}>
@@ -24,7 +25,7 @@ const relatedCases = allCases.filter(c => c.id !== caseItem.id).slice(0, 2);
     <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#00F5FF 1px, transparent 1px), linear-gradient(90deg, #00F5FF 1px, transparent 1px); background-size: 50px 50px;"></div>
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <a href="/cases/" class="font-mono text-cyan text-sm hover:underline mb-8 inline-block reveal">
+      <a href={`${base}cases/`} class="font-mono text-cyan text-sm hover:underline mb-8 inline-block reveal">
         ← Terug naar cases
       </a>
       
@@ -137,7 +138,7 @@ const relatedCases = allCases.filter(c => c.id !== caseItem.id).slice(0, 2);
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {relatedCases.map((related) => (
             <a 
-              href={`/cases/${related.id}/`}
+              href={`${base}cases/${related.id}/`}
               class="group border-2 border-cyan/20 hover:border-cyan/50 transition-colors duration-300 block reveal"
             >
               <div class="p-6 md:p-8">
@@ -174,7 +175,7 @@ const relatedCases = allCases.filter(c => c.id !== caseItem.id).slice(0, 2);
         Laten we samen werken aan jouw groei.
       </p>
       <a 
-        href="/#contact" 
+        href={`${base}#contact`} 
         class="inline-block bg-cyan text-oxford font-heading font-bold text-lg px-8 py-4 hard-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-300 reveal"
       >
         Start Jouw Groei →

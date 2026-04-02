@@ -3,10 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const cases = await getCollection('cases');
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Cases | Iwan Stepanova - Resultaten die Spreken">
-  <section class="pt-24 md:pt-32 pb-16 border-b-2 border-cyan/20">
+  <section class="pt-28 md:pt-36 pb-16 border-b-2 border-cyan/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <span class="font-mono text-cyan text-sm uppercase tracking-wider">Cases</span>
       <h1 class="font-heading text-4xl md:text-6xl font-bold mt-2 mb-12">
@@ -16,7 +17,7 @@ const cases = await getCollection('cases');
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {cases.map((caseItem) => (
           <a 
-            href={`/cases/${caseItem.id}/`}
+            href={`${base}cases/${caseItem.id}/`}
             class="group border-2 border-cyan/20 hover:border-cyan/50 transition-colors duration-300 block reveal"
           >
             <div class="p-6 md:p-8">

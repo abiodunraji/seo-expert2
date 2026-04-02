@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import SocialProof from '../components/SocialProof.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Iwan Stepanova | SEO Expert - De Strategische Architect">
@@ -28,13 +29,13 @@ import SocialProof from '../components/SocialProof.astro';
 
           <div class="flex flex-col sm:flex-row gap-4 mt-8 reveal">
             <a 
-              href="#diensten" 
+              href={`${base}#diensten`} 
               class="inline-block bg-cyan text-oxford font-heading font-bold text-lg px-8 py-4 hard-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-300 text-center"
             >
               Ontdek Mijn Diensten
             </a>
             <a 
-              href="#contact" 
+              href={`${base}#contact`} 
               class="inline-block border-2 border-cyan text-cyan font-heading font-bold text-lg px-8 py-4 hover:bg-cyan hover:text-oxford transition-all duration-300 text-center"
             >
               Contact Opnemen

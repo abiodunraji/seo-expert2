@@ -1,5 +1,6 @@
 ---
 import { services } from '../data/services';
+const base = import.meta.env.BASE_URL;
 ---
 
 <section id="diensten" class="py-16 md:py-24 border-b-2 border-cyan/20">
@@ -14,7 +15,7 @@ import { services } from '../data/services';
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-cyan/20 border-2 border-cyan/20">
       {services.sort((a, b) => a.order - b.order).map((service, index) => (
         <a 
-          href={`/diensten/${service.slug}/`}
+          href={`${base}diensten/${service.slug}/`}
           class="group bg-oxford p-6 md:p-8 hover:bg-oxford-light transition-colors duration-300 reveal"
           style={`transition-delay: ${index * 50}ms`}
         >

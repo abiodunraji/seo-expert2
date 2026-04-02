@@ -12,13 +12,14 @@ export async function getStaticPaths() {
 
 const { dienst } = Astro.props;
 const { Content } = await render(dienst);
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={`${dienst.data.title} | Iwan Stepanova`}>
   <!-- Hero -->
-  <section class="pt-24 md:pt-32 pb-16 border-b-2 border-cyan/20">
+  <section class="pt-28 md:pt-36 pb-16 border-b-2 border-cyan/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <a href="/diensten/" class="font-mono text-cyan text-sm hover:underline mb-4 inline-block">
+      <a href={`${base}diensten/`} class="font-mono text-cyan text-sm hover:underline mb-4 inline-block">
         ← Terug naar diensten
       </a>
       <div class="text-4xl mb-4">{dienst.data.icon}</div>
@@ -68,7 +69,7 @@ const { Content } = await render(dienst);
         Klaar om te <span class="text-cyan">starten</span>?
       </h2>
       <a 
-        href="/#contact" 
+        href={`${base}#contact`} 
         class="inline-block bg-cyan text-oxford font-heading font-bold text-lg px-8 py-4 hard-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-300"
       >
         Neem Contact Op →
